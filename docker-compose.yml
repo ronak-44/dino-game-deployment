@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./dino-game
+    ports:
+      - "80:80"
+  
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "5001:5000"
+    env_file:
+      - ./backend/.env
