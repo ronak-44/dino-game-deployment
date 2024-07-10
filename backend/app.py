@@ -1,20 +1,53 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import boto3
-from decouple import config
 from datetime import datetime
+
 
 # Initializing flask app
 app = Flask(__name__)
 CORS(app)
 
 
-AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_ACCESS_KEY")
-REGION_NAME = config("REGION_NAME")
-client = boto3.client('dynamodb', aws_access_key_id = AWS_ACCESS_KEY_ID, aws_secret_access_key = AWS_SECRET_ACCESS_KEY,region_name = REGION_NAME)
-resource = boto3.resource('dynamodb', aws_access_key_id = AWS_ACCESS_KEY_ID, aws_secret_access_key = AWS_SECRET_ACCESS_KEY,region_name = REGION_NAME)
+
+
+# AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+# AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+# REGION_NAME = os.getenv("REGION_NAME")
+
+# def get_parameter(name):
+#     ssm = boto3.client('ssm', region_name='us-east-2')  # Replace with your region
+#     response = ssm.get_parameter(
+#         Name=name,
+#         WithDecryption=True
+#     )
+#     return response['Parameter']['Value']
+
+# # Retrieve credentials from AWS Parameter Store
+# REGION_NAME = get_parameter('/dino-game/aws/REGION_NAME')
+# print(REGION_NAME )
+# AWS_SECRET_ACCESS_KEY = get_parameter('/dino-game/aws/AWS_SECRET_ACCESS_KEY')
+# AWS_ACCESS_KEY_ID = get_parameter('/dino-game/aws/AWS_ACCESS_KEY_ID')
+
+
+
+
+# Initialize DynamoDB resource
+# resource = boto3.resource(
+#     'dynamodb', 
+#     aws_access_key_id=AWS_ACCESS_KEY_ID, 
+#     aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+#     region_name=REGION_NAME
+# )
+resource = boto3.resource(
+    'dynamodb', region_name='us-east-2'
+)
 LeaderboardTable = resource.Table('Leaderboard')
+
+
+#client = boto3.client('dynamodb', aws_access_key_id = AWS_ACCESS_KEY_ID, aws_secret_access_key = AWS_SECRET_ACCESS_KEY,region_name = REGION_NAME)
+# resource = boto3.resource('dynamodb', aws_access_key_id = AWS_ACCESS_KEY_ID, aws_secret_access_key = AWS_SECRET_ACCESS_KEY,region_name = REGION_NAME)
+# LeaderboardTable = resource.Table('Leaderboard')
 
 
 @app.route('/')
