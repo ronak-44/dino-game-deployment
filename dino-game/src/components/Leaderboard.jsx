@@ -9,7 +9,7 @@ function Leaderboard(props) {
 
     
     function updateLeaderboard() {
-        fetch('http://localhost:5001/write', {
+        fetch('http://3.144.37.52:5000/:5000/write', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -25,7 +25,7 @@ function Leaderboard(props) {
     }
 
     function getLeaderboard() {
-        fetch('http://localhost:5001/read', {
+        fetch('http://3.144.37.52:5000/read', {
             method: 'GET',
         })
             .then(response => response.json())
