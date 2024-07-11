@@ -11,7 +11,7 @@ env:
   ECR_BACKEND_IMAGE: dino-game-backend
   AWS_DEFAULT_REGION: us-east-2
   ECS_CLUSTER: dino-game-cluster
-  ECS_BACKEND_SERVICE: dino-game-backend-service2
+  ECS_BACKEND_SERVICE: dino-game-backend-sevice2  
 
 jobs:
   deploy:
