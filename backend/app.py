@@ -52,7 +52,7 @@ LeaderboardTable = resource.Table('Leaderboard')
 
 @app.route('/')
 def home():
-    return "<h1>Hey lolb!</h1>"
+    return "<h1>Hey lol!</h1>"
 
 @app.route('/leaderboard', methods=['GET'])
 def get_leaderboard():
