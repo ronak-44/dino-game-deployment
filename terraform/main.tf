@@ -83,8 +83,8 @@ resource "aws_ecs_task_definition" "terraform_backend_task" {
     memory = 3072
     cpu    = 1024
     environment = [
-      { name = "AWS_ACCESS_KEY_ID", value = "Enter Value" },
-      { name = "AWS_SECRET_ACCESS_KEY", value = "Enter Value" },
+      { name = "AWS_ACCESS_KEY_ID", value = "VALUE" },
+      { name = "AWS_SECRET_ACCESS_KEY", value = "VALUE" },
     ]
     logConfiguration = {
       logDriver = "awslogs"
@@ -167,7 +167,7 @@ resource "aws_ecs_service" "terraform_backend_service" {
 
   network_configuration {
     subnets          = [aws_default_subnet.default_subnet_a.id, aws_default_subnet.default_subnet_b.id, aws_default_subnet.default_subnet_c.id]
-    assign_public_ip = false  # Backend typically does not need public IP, adjust as per your setup
+    assign_public_ip = true
   }
 }
 
